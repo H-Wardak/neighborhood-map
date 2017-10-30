@@ -1,0 +1,219 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.95em;
+}
+
+.nav {
+    max-width: 60%;
+    width: 20em;
+    min-width: 14em;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    background-color: white;
+    transition: 0.4s cubic-bezier(0, 0.25, 0.5, 1);
+}
+
+.nav > * {
+    transition: inherit;
+}
+
+.brand {
+    display: block;
+    width: 3em;
+    height: 3em;
+    padding: 0.25em;
+    white-space: nowrap;
+}
+
+.logo {
+    height: 100%;
+}
+
+.brand-name {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    font-size: large;
+    color: black;
+    text-decoration: none;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        transform: translateX(calc(-100% + 3.5em));
+    }
+
+        .nav.change {
+            transform: translateX(0);
+        }
+
+    .brand-name {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        width: 2.5em;
+        height: 2em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0.5em 0.5em 0.5em auto;
+        transform: rotate(0deg);
+        cursor: pointer;
+        opacity: 1;
+    }
+
+        .hamburger.change {
+            transform: rotate(360deg);
+        }
+
+        .hamburger > * {
+            width: inherit;
+            height: 20%;
+            background-color: #333;
+            border-radius: 0.2em;
+            margin: 0 auto 16% auto;
+            transition: inherit;
+            transform: rotate(0) translate(0, 0);
+            opacity: 1;
+        }
+
+        .hamburger :nth-child(3) {
+            margin-bottom: 0;
+        }
+
+        .hamburger.change :nth-child(1) {
+            width: 110%;
+            transform: rotate(-45deg) translate(-23%, 126%);
+        }
+
+        .hamburger.change :nth-child(2) {
+            width: 0;
+            opacity: 0;
+        }
+
+        .hamburger.change :nth-child(3) {
+            width: 110%;
+            transform: rotate(45deg) translate(-24%, -131%);
+        }
+}
+
+.list > * {
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.defilter {
+    float: right;
+}
+
+.list-header {
+    padding: 0.8em 1em;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    color: dodgerblue;
+}
+
+    .list-header:hover {
+        background-color: aliceblue;
+    }
+
+.list-item {
+    padding: 0.8em 2em;
+    border-top: 1px solid #ddd;
+    background-color: whitesmoke;
+}
+
+    .list-item.active {
+        background-color: darkgray;
+    }
+
+    .list-item:hover {
+        background-color: lightgray;
+    }
+
+    .list-item:first-of-type {
+        border-top: none;
+    }
+
+    .list-item:last-of-type {
+        border-bottom: 1px solid #ddd;
+    }
+
+#map {
+    height: 100%;
+}
+
+#info-window > #img {
+    width: 100%;
+    height: 10em;
+    position: relative;
+    overflow: hidden;
+}
+
+    #info-window > #img > img {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: -50%;
+    }
+
+    #info-window > #img > #title {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        font-weight: bold;
+        padding: 0.5em;
+        background: rgba(0, 0, 0, 0.5);
+        white-space: nowrap;
+        color: whitesmoke;
+    }
+
+#info-window > #content {
+    padding: 1em;
+    max-height: 12em;
+    overflow-y: auto;
+}
+
+#message {
+    display: none;
+    position: absolute;
+    max-width: 36em;
+    width: 32%;
+    min-width: 20em;
+    min-height: 3.4em;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 1em auto 0;
+    padding: 0.5em;
+    text-align: center;
+    background-color: white;
+    --color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.5em;
+    border-color: var(--color);
+}
+
+#message.error {
+    --color: red;
+    color: var(--color);
+    border-color: var(--color);
+}
+
+#message.success {
+    --color: green;
+    color: var(--color);
+    border-color: var(--color);
+}
