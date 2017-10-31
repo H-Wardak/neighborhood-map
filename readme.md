@@ -1,4 +1,7 @@
-# How to:
+# Neighborhood-map
+This is a Udacity neighborhood map project from Front-end development Nanodegree. It's including restuarants neer to my location.
+
+## How to:
 1. Start by opening `index.html`
 2. A map with a predefined location should load (if not you will get an error message with a summary)
 3. On the left, you will find all **Food Venues** loaded by ![foursquare icon](./img/fs-32.svg =16x16) Foursquare API; divided into **Filters** (or Categories) above, and **Restaurants** below.
