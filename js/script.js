@@ -8,7 +8,7 @@ window.addEventListener('offline', function (e) {
 });
 window.addEventListener('online', function (e) {
     vm.showMessage(0, 'We are back online!');
-})
+});
 
 function startMap() {
     //var ratio = window.devicePixelRatio || 1;
@@ -34,6 +34,8 @@ function startMap() {
     map.addListener('click', function () {
         infoWindow.close();
     });
+
+    vm.loadVenues();
 }
 
 var Filter = function (data) {
@@ -83,7 +85,7 @@ var ViewModel = function () {
     data.categoryId = '4d4b7105d754a06374d81259'; // food
     data.radius = 500;
     //data.query = 'fast food'
-    //data.limit = 10;
+    data.limit = 15;
     //data.url = 'someurl.com';
 
     self.venues = ko.observableArray([]);
@@ -192,8 +194,6 @@ var ViewModel = function () {
             message.fadeOut();
         }, 5000);
     }
-
-    self.loadVenues();
 }
 
 var vm = new ViewModel();
