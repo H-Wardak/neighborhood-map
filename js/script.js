@@ -43,7 +43,7 @@ var Filter = function (data) {
     self.id = data.id;
     self.name = data.pluralName;
     self.img = data.icon.prefix + data.icon.suffix;
-}
+};
 
 var Venue = function (data) {
     var self = this;
@@ -68,7 +68,7 @@ var Venue = function (data) {
     self.marker.addListener('click', function () {
         vm.showInfo(self);
     });
-}
+};
 
 var ViewModel = function () {
     var self = this;
@@ -106,7 +106,7 @@ var ViewModel = function () {
             map.setCenter(venue.marker.position);
             map.setZoom(17);
         }
-    }
+    };
 
     self.loadDetails = function (venue) {
         $.ajax({
@@ -120,7 +120,7 @@ var ViewModel = function () {
         }).fail(function (data, msg) {
             self.showMessage(-1, 'failed to load details');
         });
-    }
+    };
 
     self.loadVenues = function () {
         $.ajax({
@@ -143,19 +143,19 @@ var ViewModel = function () {
         }).fail(function (data, msg) {
             self.showMessage(-1, 'failed to load venues');
         });
-    }
+    };
 
     self.animateMarker = function (marker) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function () {
             marker.setAnimation(null);
         }, 1450);
-    }
+    };
 
     self.toggleNav = function () {
         nav.toggleClass('change');
         nav.children('.hamburger').toggleClass('change');
-    }
+    };
 
     self.filter = function (category) {
         for (var i = 0; i < self.venues().length; i++) {
@@ -169,7 +169,7 @@ var ViewModel = function () {
             }
         }
         self.isFiltered(true);
-    }
+    };
 
     self.defilter = function () {
         for (var i = 0; i < self.venues().length; i++) {
@@ -180,7 +180,7 @@ var ViewModel = function () {
             }
         }
         self.isFiltered(false);
-    }
+    };
 
     self.showMessage = function (type, msg) {
         if (type === -1) {
@@ -193,8 +193,8 @@ var ViewModel = function () {
         setTimeout(function () {
             message.fadeOut();
         }, 5000);
-    }
-}
+    };
+};
 
 var vm = new ViewModel();
 ko.applyBindings(vm);
