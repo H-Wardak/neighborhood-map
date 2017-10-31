@@ -8,21 +8,6 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <!-- infoWindow template -->
-        <script type="text/html" id="iw-template">
-            <div id="info-window">
-                <div id="img">
-                    <img src="{{img}}" />
-                    <div id="title">
-                        {{title}}
-                    </div>
-                </div>
-                <div id="content">
-                    {{content}}
-                </div>
-            </div>
-        </script>
-
         <div id="map"></div>
         
         <!-- sidebar -->
@@ -54,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <img id="fs" src="img/fs-300x50.png" alt="foursquare"/>
 
         <!-- message -->
         <div id="message"></div>
@@ -63,6 +49,6 @@
         <script src="js/script.js"></script>
         <script async defer type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcrqCgq5bPjLF3DJTjq0pvLuedQzboLR0&libraries=places&callback=startMap"
-                onerror="showMsg(-1, 'Google Maps Error')"></script>
+                onerror="showMessage(-1, 'Google Maps Error')"></script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 var map = {};
 var nav = $('.nav');
-var infoWindow = {};
 var message = $('#message');
+var infoWindow = {};
 
 window.addEventListener('offline', function (e) {
     vm.showMessage(-1, 'We cannot connect to the internet!');
@@ -16,7 +16,7 @@ function startMap() {
     //var zoom = 17; //width > "360px" ? 13 : 12;
 
     var mapProp = {
-        center: { lat: 24.810509, lng: 46.735496 },
+        center: { lat: 48.871731, lng: 2.301390},
         zoom: 16,
         mapTypeControl: true,
         mapTypeControlOptions: {
@@ -34,6 +34,8 @@ function startMap() {
     map.addListener('click', function () {
         infoWindow.close();
     });
+
+    vm.loadVenues();
 }
 
 var Filter = function (data) {
@@ -66,6 +68,7 @@ var Venue = function (data) {
     self.marker.addListener('click', function () {
         vm.showInfo(self);
     });
+    self.iw_html = '';
 }
 
 var ViewModel = function () {
@@ -77,13 +80,13 @@ var ViewModel = function () {
         v: 201701031
     };
 
-    data.ll = '24.807918,46.736490';
+    data.ll = '48.871731,2.301390';
     //data.near = 'Qurtuba, Riyadh';
     //data.intent = 'checkin' // 'browse'
     data.categoryId = '4d4b7105d754a06374d81259'; // food
     data.radius = 500;
     //data.query = 'fast food'
-    //data.limit = 10;
+    data.limit = 15;
     //data.url = 'someurl.com';
 
     self.venues = ko.observableArray([]);
@@ -91,14 +94,10 @@ var ViewModel = function () {
     self.isFiltered = ko.observable(false);
 
     self.showInfo = function (venue) {
-        if (!venue.img) {
+        if (!venue.iw_html) {
             self.loadDetails(venue);
         } else {
-            var iw_html = $('#iw-template').html();
-            iw_html = iw_html.replace('{{title}}', venue.name)
-                .replace('{{img}}', venue.img)
-                .replace('{{content}}', venue.address + '<br>' + (venue.desc || ''));
-            infoWindow.setContent(iw_html);
+            infoWindow.setContent(venue.iw_html);
             infoWindow.open(map, venue.marker);
             self.animateMarker(venue.marker);
             map.setCenter(venue.marker.position);
@@ -114,6 +113,16 @@ var ViewModel = function () {
         }).done(function (data) {
             venue.img = data.response.venue.bestPhoto.prefix + 'original' + data.response.venue.bestPhoto.suffix;
             venue.desc = data.response.venue.description;
+            venue.iw_html =
+                '<div>' +
+                    '<div id="info-window">' +
+                        '<div id="img">' +
+                            '<img src="' + venue.img + '" />' +
+                            '<div id="title">' + venue.name + '</div>' +
+                        '</div>' +
+                        '<div id="content">' + (venue.desc || venue.address || '') + '</div>' +
+                    '</div>' +
+                '</div>';
             self.showInfo(venue);
         }).fail(function (data, msg) {
             self.showMessage(-1, 'failed to load details');
@@ -147,7 +156,7 @@ var ViewModel = function () {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function () {
             marker.setAnimation(null);
-        }, 1450);
+        }, 1400);
     }
 
     self.toggleNav = function () {
@@ -192,8 +201,6 @@ var ViewModel = function () {
             message.fadeOut();
         }, 5000);
     }
-
-    self.loadVenues();
 }
 
 var vm = new ViewModel();

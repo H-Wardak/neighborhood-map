@@ -154,18 +154,23 @@
     height: 100%;
 }
 
+#info-window {
+    width: 24em;
+    height: 16em;
+    overflow-x: hidden;
+}
 #info-window > #img {
     width: 100%;
     height: 10em;
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
     #info-window > #img > img {
         display: block;
         width: 100%;
+        height: auto;
         position: absolute;
-        top: -50%;
     }
 
     #info-window > #img > #title {
@@ -216,4 +221,10 @@
     --color: green;
     color: var(--color);
     border-color: var(--color);
+}
+
+#fs {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 150px);
 }
