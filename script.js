@@ -8,7 +8,7 @@ window.addEventListener('offline', function (e) {
 });
 window.addEventListener('online', function (e) {
     vm.showMessage(0, 'We are back online!');
-})
+});
 
 function startMap() {
     //var ratio = window.devicePixelRatio || 1;
@@ -36,14 +36,14 @@ function startMap() {
     });
 
     vm.loadVenues();
-}
+};
 
 var Filter = function (data) {
     var self = this;
     self.id = data.id;
     self.name = data.pluralName;
     self.img = data.icon.prefix + data.icon.suffix;
-}
+};
 
 var Venue = function (data) {
     var self = this;
@@ -68,7 +68,7 @@ var Venue = function (data) {
     self.marker.addListener('click', function () {
         vm.showInfo(self);
     });
-}
+};
 
 var ViewModel = function () {
     var self = this;
